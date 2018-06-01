@@ -49,7 +49,7 @@ class Song
             INTO `songs`
             (`name`, `code`, `author`, description`, `date`, `url`, `html_url)
             VALUES
-            (?, ?, ?, ?, ?, ?, ?)
+            (?, ?, ?, ?, NOW(), ?, ?)
         ";
 
         $values = [
@@ -57,7 +57,6 @@ class Song
             $this->code,
             $this->author,
             $this->description,
-            $this->date,
             $this->url,
             $this->html_url,
         ];
@@ -70,12 +69,11 @@ class Song
     public function update()
     {
         $query = "
-            UPDATE `product`
+            UPDATE `songs`
             SET `name` = ?,
                 `code` = ?,
                 `author` = ?,
                 `description` = ?,
-                `date` = ?,
                 `url` = ?,
                 `html_url` = ?,
             WHERE `id` = ?
@@ -86,7 +84,6 @@ class Song
             $this->code,
             $this->author,
             $this->description,
-            $this->date,
             $this->url,
             $this->html_url,
         ];
