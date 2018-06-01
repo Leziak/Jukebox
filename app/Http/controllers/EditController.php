@@ -19,10 +19,15 @@ class EditController
         if($_POST) {
             $song->name = $_POST['name'];
             $song->code = $_POST['code'];
-            $song->author = $_POST['author'];
+            $song->author_id = $_POST['author_id'];
             $song->description = $_POST['description'];
-            $song->save();
-            header("location: ?page=list&id={$song->id}");
+            if(!($song->name == '' || $song->code == '' || $song->description == '')) {
+                $song->save();
+                header("location: ?page=list&id={$song->id}");
+            } else {
+                echo '<script>alert("Please fill all the inputs")</script>';
+            }
+
         }
 
         $content = 'edit.php';

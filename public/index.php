@@ -4,6 +4,8 @@ require_once '../config/app.php';
 require_once '../vendor/leziak/mvc/routing.php';
 require_once '../vendor/leziak/mvc/db.php';
 require_once '../app/Song.php';
+require_once '../app/Author.php';
+
 
 $controller_name = \leziak\mvc\routing\getControllerFromUrl();
 

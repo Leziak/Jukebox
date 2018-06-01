@@ -14,10 +14,11 @@ class DeleteController
         $song_id = $_GET['id'];
 
         $song = Song::find($song_id);
-
+//        echo '<script>confirm'
         $song->delete();
 
         header('location: /');
+
 
 
     }

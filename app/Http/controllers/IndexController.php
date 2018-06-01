@@ -9,7 +9,7 @@ class IndexController
     public function index()
     {
 
-        $query = "SELECT * FROM `songs`";
+        $query = "SELECT `songs`.*,`authors`.`name` AS `author_name` FROM `songs` LEFT JOIN `authors` ON `authors`.`id` = `songs`.`author_id`";
 
         $songs = \app\Song::select($query);
 

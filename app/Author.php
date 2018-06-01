@@ -5,22 +5,20 @@ namespace app;
 use \leziak\mvc\db;
 use PDO;
 
-class Song
+class Author
 {
     public $id = null;
-    public $author_id = null;
-    public $author_name = null;
     public $name = null;
-    public $code = null;
-    public $description = null;
-    public $date = null;
-    public $url = null;
-    public $html_url = null;
+    public $birth = null;
+    public $biography = null;
+    public $photo = null;
 
     public static function find($id)
     {
         $query = "
-            SELECT `songs`.*,`authors`.`name` AS `author_name` FROM `songs` LEFT JOIN `authors` ON `authors`.`id` = `songs`.`author_id` WHERE `songs`.`id` = ?
+            SELECT *
+            FROM `authors`
+            WHERE `id` = ?
             ";
 
         $statement = db::query($query, [
@@ -45,19 +43,17 @@ class Song
     {
         $query = "
             INSERT 
-            INTO `songs`
-            (`name`, `code`, `author_id`, `description`, `date`, `url`, `html_url`)
+            INTO `authors`
+            (`name`, `birth`, `biography`, `photo`)
             VALUES
-            (?, ?, ?, ?, NOW(), ?, ?)
+            (?, ?, ?, ?)
         ";
 
         $values = [
             $this->name,
-            $this->code,
-            $this->author_id,
-            $this->description,
-            $this->url,
-            $this->html_url,
+            $this->birth,
+            $this->biography,
+            $this->photo,
         ];
 
         db::query($query, $values);
@@ -68,24 +64,19 @@ class Song
     public function update()
     {
         $query = "
-            UPDATE `songs`
+            UPDATE `authors`
             SET `name` = ?,
-                `code` = ?,
-                `author_id` = ?,
-                `description` = ?,
-                `url` = ?,
-                `html_url` = ?
+                `birth` = ?,
+                `biography` = ?,
+                `photo` = ?,
             WHERE `id` = ?
         ";
 
         $values =  [
             $this->name,
-            $this->code,
-            $this->author_id,
-            $this->description,
-            $this->url,
-            $this->html_url,
-            $this->id
+            $this->birth,
+            $this->biography,
+            $this->photo,
         ];
 
         db::query($query, $values);
@@ -95,7 +86,7 @@ class Song
     {
         $query = "
             DELETE
-            FROM `songs`
+            FROM `authors`
             WHERE `id` = ?
         ";
 
