@@ -47,7 +47,7 @@ class Song
         $query = "
             INSERT 
             INTO `songs`
-            (`name`, `code`, `author`, description`, `date`, `url`, `html_url)
+            (`name`, `code`, `author`, `description`, `date`, `url`, `html_url`)
             VALUES
             (?, ?, ?, ?, NOW(), ?, ?)
         ";
@@ -75,7 +75,7 @@ class Song
                 `author` = ?,
                 `description` = ?,
                 `url` = ?,
-                `html_url` = ?,
+                `html_url` = ?
             WHERE `id` = ?
         ";
 
@@ -86,6 +86,7 @@ class Song
             $this->description,
             $this->url,
             $this->html_url,
+            $this->id
         ];
 
         db::query($query, $values);
