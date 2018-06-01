@@ -11,6 +11,8 @@
         <th>Url</th>
         <th>Html_url</th>
         <th></th>
+        <th></th>
+        <th></th>
     </tr>
     <?php foreach($songs as $song) : ?>
         <tr>
@@ -23,6 +25,8 @@
             <td><?= $song->url ?></td>
             <td><?= $song->html_url ?></td>
             <td><a href=<?= SITE_URL . "/?page=detail&id={$song->id}" ?>>DETAIL</a></td>
+            <td><a href=<?= SITE_URL . "/?page=edit&id={$song->id}" ?>>EDIT</a></td>
+            <td><a href=<?= SITE_URL . "/?id={$song->id}" ?>>DELETE</a></td>
         </tr>
     <?php endforeach; ?>
 </table>
